@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const userRoutes = require("./routes/user.routes");
+const PostRoutes = require("./routes/post.routes");
 // const piquanteRoutes = require("./routes/piquante");
 // const path = require("path");
 const helmet = require("helmet");
@@ -41,6 +42,8 @@ app.use(express.json());
 // app.use("/images", express.static(path.join(__dirname, "images")));
 // app.use("/api/sauces", piquanteRoutes);
 app.use("/api/auth", userRoutes);
+app.use("/api/post", PostRoutes);
+
 app.use((req, res) => {
   res.json({ message: "Votre requête a bien été reçue !" });
 });
