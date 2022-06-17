@@ -19,6 +19,7 @@ const storage = multer.diskStorage({
   // Deuxième objet de configuration : expliquer à 'multer' quel nom de fichier à utiliser
   filename: function (req, file, callback) {
     // Génération du nom du fichier
+    console.log("multer");
     const name = file.originalname.split(" ").join("_");
     // Application de l'extension du fichier en utilisant des MIME_TYPES
     const extension = MIME_TYPES[file.mimetype];

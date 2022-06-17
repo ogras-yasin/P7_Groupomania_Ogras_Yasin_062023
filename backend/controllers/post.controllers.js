@@ -3,22 +3,27 @@ const Post = require("../models/post.model");
 // creation Post
 exports.createPost = (req, res, next) => {
   // const postObject = JSON.parse(req.body.post);
+  // delete postObject._id;
   const post = new Post({
-    // commentary: req.body.commentary,
     ...req.body,
+    // imageUrl: `${req.protocol}://${req.get("host")}/images/${
+    //   req.file.filename
+    // }`,
   });
-  //   i dont know that i am doing
-  console.log("post");
-  console.log(post);
+  // console.log("req.file.filename");
+  // console.log(req.file.filename);
+  // console.log("post");
+  // console.log(post);
   //   spread operator excelent
   post
+    // sauvegarde dans mongoDB
     .save()
     .then(() => {
       res
         .status(200)
         .json({ msg: "Un post doit pouvoir contenir du texte et une image" });
     })
-    .catch(() => {
+    .catch((error) => {
       res.status(400).json({ error: error });
     });
 };

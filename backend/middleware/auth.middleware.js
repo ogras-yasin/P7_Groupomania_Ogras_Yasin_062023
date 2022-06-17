@@ -12,6 +12,11 @@ module.exports = (req, res, next) => {
     const decodedToken = jwt.verify(token, process.env.SECRET_TOKEN);
     // recuperer le userdId qu'il y a a l'interieur du token
     const userId = decodedToken.userId;
+    // console.log("decodedToken");
+    // console.log(decodedToken);
+    // console.log("userId");
+    // console.log(userId);
+
     if (req.body.userId && req.body.userId !== userId) {
       throw "Invalid user ID";
       // Le token corespond bien a l'utilisateur

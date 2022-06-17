@@ -20,8 +20,12 @@ exports.signup = (req, res, next) => {
         .save()
         // type de message attendue { message: string } accomplie
         .then(() => res.status(201).json({ message: "Utilisateur créé !" }))
-        .catch((error) =>
-          res.status(400).json({ error: "Ce nom Utilisateur est déjà utilisé" })
+        .catch(
+          (error) =>
+            res
+              .status(400)
+              .json({ error: "Ce nom Utilisateur est déjà utilisé" })
+          // devrai-je mettre un jwt.sign, envoyer un token
         );
     })
     .catch((error) => {
