@@ -1,11 +1,13 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const userRoutes = require("./routes/user.routes");
-const PostRoutes = require("./routes/post.routes");
-// const piquanteRoutes = require("./routes/piquante");
 const path = require("path");
 const helmet = require("helmet");
 require("dotenv").config();
+// Routes files
+const userRoutes = require("./routes/user.routes");
+const PostRoutes = require("./routes/post.routes");
+const commentRoutes = require("./routes/comment.routes");
+// const piquanteRoutes = require("./routes/piquante");
 
 mongoose
   .connect(process.env.DB_URL, {
@@ -17,6 +19,7 @@ mongoose
 
 const app = express();
 
+// Cors (need to create a config file for better lisibility)
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader(
@@ -40,9 +43,12 @@ app.use(
 app.use(express.json());
 
 app.use("/images", express.static(path.join(__dirname, "images")));
+
+// Routes
 // app.use("/api/sauces", piquanteRoutes);
 app.use("/api/auth", userRoutes);
 app.use("/api/post", PostRoutes);
+app.use("/api/post/comment", commentRoutes);
 
 app.use((req, res) => {
   res.json({ message: "Votre requête a bien été reçue !" });
