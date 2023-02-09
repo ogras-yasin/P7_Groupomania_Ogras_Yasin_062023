@@ -1,42 +1,29 @@
 const Post = require("../models/post.model");
 
 exports.likePost = (req, res) => {
-  // you can only like once per user
-
-  // first like a post
-  // id of the post log the Post to see the object
+  // trouver l'id de l'object puis manipuler les l'object(likes,usersLiked,...)
   Post.findOne({ _id: req.params.id })
     .then((ThePost) => {
-      //   si userId pas dans le tableau et like 1 ALORS incrementer +1
-      //   puis ajouTER PUIS LIKE =1
-      console.log("req.body");
-
-      //   incrementation de like
-      console.log(req.body);
+      //   si userId n'est pas dans le tableau et like === 1 ALORS incrementer +1 et ajouter l'userId ds le tbl usersLiked
       if (
         !ThePost.usersLiked.includes(req.body.userId) &&
         req.body.like === 1
       ) {
-        console.log("userId non trouve ds le usersLiked");
-        console.log(Post);
-        console.log(ThePost);
-
         Post.updateOne(
           { _id: req.params.id },
           { $inc: { likes: 1 }, $push: { usersLiked: req.body.userId } }
         )
           .then(() => {
-            console.log("i am inside then");
-            res.status(401).json({ you: "did it" });
+            res.status(401).json({ msg: "like ajoutée" });
           })
           .catch((error) => res.status(400).json({ error: error }));
       }
-      //   si userId present dans usersLiked et like -1 alors enlever le like
+
+      //   si userId present dans usersLiked et like = 0  alors enlever le like et enlever l'userId dans le tbl usersLiked
       else if (
         ThePost.usersLiked.includes(req.body.userId) &&
         req.body.like === 0
       ) {
-        console.log("enlever le like");
         Post.updateOne(
           { _id: req.params.id },
           { $inc: { likes: -1 }, $pull: { usersLiked: req.body.userId } }
@@ -46,6 +33,37 @@ exports.likePost = (req, res) => {
           })
           .catch((error) => res.status(400).json({ error: error }));
       }
+
+      // si userId n'est pas dans le tableau et like = -1 ALORS incrementer +1 et ajouter l'userId ds le tbl usersDisliked
+      else if (
+        !ThePost.usersDisliked.includes(req.body.userId) &&
+        req.body.like === -1
+      ) {
+        Post.updateOne(
+          { _id: req.params.id },
+          { $inc: { dislikes: 1 }, $push: { usersDisliked: req.body.userId } }
+        )
+          .then(() => {
+            res.status(201).json({ msg: "dislike +1 ajoutee" });
+          })
+          .catch((error) => res.status(401).json({ error: error }));
+      }
+
+      // si userId est dans le tableau et like = 0 ALORS enlever le dislike et enlever l'userId dans le tbl usersDisliked
+      else if (
+        ThePost.usersDisliked.includes(req.body.userId) &&
+        req.body.like === 0
+      ) {
+        Post.updateOne(
+          { _id: req.params.id },
+          { $inc: { dislikes: -1 }, $pull: { usersDisliked: req.body.userId } }
+        )
+          .then(() => {
+            res.status(201).json({ msg: " dislike enlever" });
+          })
+          .catch((error) => res.status(401).json({ error: error }));
+      }
+
       //   si aucun ne correspond
       else {
         console.log(ThePost);
@@ -56,7 +74,3 @@ exports.likePost = (req, res) => {
       res.status(400).json({ error: error });
     });
 };
-
-// exports.dislikePost = (req, res) => {
-//   res.status(401).json({ you: "did it" });
-// };

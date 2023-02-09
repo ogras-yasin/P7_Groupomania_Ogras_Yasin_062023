@@ -7,6 +7,7 @@ const auth = require("../middleware/auth.middleware");
 const likeCtrl = require("../controllers/like.Ctrl");
 // const commentCtrl = require("../controllers/comment.controller");
 
+// router.post("/", auth, postCtrl.createPost);
 router.post("/", auth, postCtrl.createPost);
 
 // MIDDLEWARE ADMIN ?
