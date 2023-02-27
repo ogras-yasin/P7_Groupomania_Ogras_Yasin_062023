@@ -1,0 +1,46 @@
+.login-form, .register-form{
+    display: flex;
+    flex-direction: column;
+}
+
+label{
+    text-align: left;
+    padding: 0.25rem 0;
+}
+
+input{
+    /* margin: 0.25 rem; */
+    padding: 1rem;
+    border:none;
+    border-radius: 10px;
+}
+
+button{
+    margin: 10px 0;
+    border: none;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    /* color: ; */
+}
+
+button:hover{
+    transition: ease  250ms ;
+    box-shadow: inset 0 0 5px black
+}
+
+button:active{
+    box-shadow: inset 0 0 10px black;
+
+}
+
+.link-btn{
+    background: none;
+    color: white;
+    text-decoration: underline;
+}
+
+@media screen and (min-width:600px){
+    .auth-form-container{margin: 0.5rem;}
+}

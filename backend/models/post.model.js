@@ -15,17 +15,6 @@ const modelsPostSchema = mongoose.Schema({
   // tableau des identifiants qui ont aimer ou pas aimer
   usersLiked: { type: [String], default: [] },
   usersDisliked: { type: [String], default: [] },
-  comments: {
-    type: [
-      {
-        commenterID: String,
-        commenterPseudo: String,
-        text: String,
-        timestamp: Number,
-      },
-    ],
-    // required: true,
-  },
 });
 
 module.exports = mongoose.model("Post", modelsPostSchema);
