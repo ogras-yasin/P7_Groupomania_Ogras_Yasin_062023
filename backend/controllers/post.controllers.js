@@ -48,7 +48,6 @@ exports.updatePost = (req, res, next) => {
       console.log("object");
       console.log(object);
 
-      //   console.log(req.body.commentary);
       res.status(200).json({ msg: "update" });
     })
     .catch((error) => {

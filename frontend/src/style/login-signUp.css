@@ -14,7 +14,7 @@ input{
     border:none;
     border-radius: 10px;
 }
-
+/* 
 button{
     margin: 10px 0;
     border: none;
@@ -22,7 +22,7 @@ button{
     padding: 20px;
     border-radius: 10px;
     cursor: pointer;
-    /* color: ; */
+
 }
 
 button:hover{
@@ -34,7 +34,7 @@ button:active{
     box-shadow: inset 0 0 10px black;
 
 }
-
+ */
 .link-btn{
     background: none;
     color: white;

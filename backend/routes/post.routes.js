@@ -5,7 +5,6 @@ const router = express.Router();
 // const upload = multer(); //buna gerek yok
 const auth = require("../middleware/auth.middleware");
 const likeCtrl = require("../controllers/like.Ctrl");
-// const commentCtrl = require("../controllers/comment.controller");
 
 // router.post("/", auth, postCtrl.createPost);
 router.post("/", auth, postCtrl.createPost);
@@ -20,7 +19,6 @@ router.delete("/:id", auth, postCtrl.deletePost);
 
 // systeme de like
 router.post("/:id/like", auth, likeCtrl.likePost);
-// router.post("/", commentCtrl.createComment);
 
 // router.post("/upload", upload.single("file"), uploadCtrl.uploadProfil);
 

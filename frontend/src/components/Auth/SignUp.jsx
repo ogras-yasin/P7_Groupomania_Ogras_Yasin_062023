@@ -1,48 +1,55 @@
-import "../style/login-signUp.css";
 import { useState } from "react";
 
-export const Login = (props) => {
+const SignUp = (props) => {
+  // const onFormSwitch =()=>{
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(e);
   };
   return (
     <div>
-      <h2>login</h2>
-      <form onSubmit={handleSubmit} className="login-form">
+      <h1>Groupomania</h1>
+
+      <h2>Sign Up</h2>
+      <form
+        onChange={(e) => e.target.value}
+        onSubmit={handleSubmit}
+        className="register-form"
+      >
         <label htmlFor="email">Email</label>
         <input
           value={email}
           onChange={(e) => {
-            // modification du hooks useState
             setEmail(e.target.value);
-            console.log(e);
           }}
           type="email"
           id="email"
           name="email"
           placeholder="email@email.com"
         />
-        <label htmlFor="pass">Password</label>
+        <label htmlFor="pass">Password</label>{" "}
         <input
+          onChange={(e) => {
+            setPass(e.target.value);
+          }}
           value={pass}
-          onChange={(e) => setPass(e.target.value)}
           type="pass"
           id="pass"
           name="pass"
-          placeholder="email@email.com"
+          placeholder="****"
         />
-        <button type="submit">Login</button>
+        <button type="submit">Sign Up</button>
         <button
-          onClick={() => props.onFormSwitch("SignUp")}
+          onClick={() => props.onFormSwitch("login")}
           className="link-btn"
         >
-          Don't have an account? Register here
+          Already have an account? Login here
         </button>
       </form>
     </div>
   );
 };
+
+export default SignUp;

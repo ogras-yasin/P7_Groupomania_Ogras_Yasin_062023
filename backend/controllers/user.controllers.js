@@ -7,7 +7,13 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
 
+exports.exampleLogic = (req, res, next) => {
+  console.log("you have find the routes yes");
+  res.status(200).json({ message: "res  ok " });
+};
+
 exports.signup = (req, res, next) => {
+  console.log("you reach the route signup");
   bcrypt
     .hash(req.body.password, 10)
     .then((hash) => {
