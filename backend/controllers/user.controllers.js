@@ -25,7 +25,16 @@ exports.signup = (req, res, next) => {
       user
         .save()
         // type de message attendue { message: string } accomplie
-        .then(() => res.status(201).json({ message: "Utilisateur créé !" }))
+        .then(() =>
+          res.status(201).json({
+            message: "Utilisateur créé !",
+            email: req.body.email,
+            userId: user._id,
+            token: jwt.sign({ userId: user._id }, process.env.SECRET_TOKEN, {
+              expiresIn: "240h",
+            }),
+          })
+        )
         .catch(
           (error) =>
             res

@@ -1,13 +1,25 @@
+
+html, body {
+    height: 100%;
+  }
+  
+  body {
+    min-height: 100vh;
+    margin: 0;
+    background: linear-gradient(77deg, #da39d2 0%, #FD2D01 52%,#FFD7D7 );
+  }
+
+
 .App{
     text-align: center;
     display: flex;
     min-height: 100 px;
     align-items: center;
 justify-content: center;
-background: linear-gradient(77deg, #da39d2 0%, #FD2D01 52%,#FFD7D7 );
 }
 
 h1{
     display: flex;
     flex-direction: column;
+    color: aqua;
 }
