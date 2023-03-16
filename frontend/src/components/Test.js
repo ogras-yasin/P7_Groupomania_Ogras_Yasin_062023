@@ -11,6 +11,7 @@ const Test = () => {
 
   return (
     <div>
+      you are in test page
       {isLoggedIn && <p className="test-size"> userId: {authCtx.userId}</p>}
       {!isLoggedIn && <p>vous netes pas connecter</p>}
       {isLoggedIn && <p>token: {authCtx.token}</p>}

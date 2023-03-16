@@ -6,7 +6,9 @@ html, body {
   body {
     min-height: 100vh;
     margin: 0;
-    background: linear-gradient(77deg, #da39d2 0%, #FD2D01 52%,#FFD7D7 );
+    background-color: grey;
+    color: white;
+    /* background: linear-gradient(77deg, #da39d2 0%, #FD2D01 52%,#FFD7D7 ); */
   }
 
 

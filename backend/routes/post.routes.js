@@ -1,13 +1,13 @@
 const postCtrl = require("../controllers/post.controllers");
 const express = require("express");
 const router = express.Router();
-// const multer = require("../middleware/multer.middleware");
+const multer = require("../middleware/multer.middleware");
 // const upload = multer(); //buna gerek yok
 const auth = require("../middleware/auth.middleware");
 const likeCtrl = require("../controllers/like.Ctrl");
 
 // router.post("/", auth, postCtrl.createPost);
-router.post("/", auth, postCtrl.createPost);
+router.post("/", auth, multer, postCtrl.createPost);
 
 // MIDDLEWARE ADMIN ?
 // auth

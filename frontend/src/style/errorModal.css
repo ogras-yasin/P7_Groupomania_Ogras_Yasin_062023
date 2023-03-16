@@ -21,7 +21,7 @@ box-shadow: 6px 5px 8px 2px black;
 
 }
 
-header {
+.header-error_modal {
     background-color: yellow;
     padding: 1rem
 }

@@ -7,11 +7,6 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
 
-exports.exampleLogic = (req, res, next) => {
-  console.log("you have find the routes yes");
-  res.status(200).json({ message: "res  ok " });
-};
-
 exports.signup = (req, res, next) => {
   console.log("you reach the route signup");
   bcrypt
@@ -28,11 +23,6 @@ exports.signup = (req, res, next) => {
         .then(() =>
           res.status(201).json({
             message: "Utilisateur créé !",
-            email: req.body.email,
-            userId: user._id,
-            token: jwt.sign({ userId: user._id }, process.env.SECRET_TOKEN, {
-              expiresIn: "240h",
-            }),
           })
         )
         .catch(
@@ -66,7 +56,9 @@ exports.login = (req, res, next) => {
           .then((valid) => {
             if (!valid) {
               console.log("incorrect login : " + valid); // il me lance true
-              return res.json({ message: "mot de passe incorrect !" });
+              return res
+                .status(401)
+                .json({ message: "mot de passe incorrect !" });
             }
             res.status(200).json({
               //  In computing and telecommunications, the PAYLOAD is the part of transmitted data that is the actual intended message. Headers and metadata are sent only to enable payload delivery

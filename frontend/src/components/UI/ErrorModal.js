@@ -14,7 +14,7 @@ const ErrorModaleOverlay = (props) => {
   return (
     // <div className="backdrop" onClick={props.onConfirm}>
     <Card className="modal">
-      <header>
+      <header className=".header-error_modal">
         <h2>{props.title}</h2>
       </header>
       <div className="content">

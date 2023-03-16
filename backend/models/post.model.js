@@ -6,7 +6,7 @@ const modelsPostSchema = mongoose.Schema({
   title: { type: String, required: true },
   description: { type: String, required: true },
   imageUrl: {},
-  //   // imageUrl: {type: File, required: true}, // error : file is not defined
+  // imageUrl: { type: File, required: true }, // error : file is not defined
 
   // système de like disliked
   likes: { type: Number, default: 0 },

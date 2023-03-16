@@ -35,5 +35,5 @@ const storage = multer.diskStorage({
 // module.exports = multer({ storage }).single("image"); // Exportation du middleware multer
 module.exports = multer({
   storage: storage,
-  limits: { fileSize: 2000000 },
+  limits: { fileSize: 5000000 },
 }).single("image"); // Exportation du middleware multer

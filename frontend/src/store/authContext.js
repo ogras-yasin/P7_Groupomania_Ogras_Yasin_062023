@@ -1,9 +1,10 @@
 import { createContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-// pour stocker les donnees : token, userId
+// The defaultValue parameter sets an initial value for the context, which can be overridden by any child component that provides its own value for the context.
 const defaultValue = {
-  token: "",
-  userId: null,
+  token: "vide",
+  userId: "",
   userIsLoggedIn: false,
   login: () => {},
   logOutHandler: () => {},
@@ -19,9 +20,9 @@ export const AuthContextProvider = (props) => {
   const [userId, setUserId] = useState(null);
   // stockage du token d'authentification
 
-  // fonction pour mettre a jour le token dans le state
+  // une fonction pour mettre a jour le token dans le state
   const loginHandler = (token, userId) => {
-    alert("test");
+    // alert("test");
     setToken(token);
     setUserId(userId);
     // mettre la donnee dans le localStorage
@@ -31,19 +32,18 @@ export const AuthContextProvider = (props) => {
 
   // fonction pour se deconnecter
   const logoutHandler = () => {
-    alert("erreur ");
+    // suprimer le token de useState et LocalStorage
     setToken(null);
-    // suprimer le token de localStorage
     localStorage.removeItem("token");
   };
   // s'il y a presence du token ca veut dire que je suis loggé
   // convertir le token en valeur booleene avec !=vrai et !!=false
 
   const userIsLoggedIn = !!token;
-  console.log("--> userIsLoggedIn");
-  console.log(userIsLoggedIn);
+  // console.log("--> userIsLoggedIn");
+  // console.log(userIsLoggedIn);
 
-  // le context value
+  // le context value //ceci peuvent etre recuperer par useContext
   const contextValue = {
     token: token,
     userId: userId,

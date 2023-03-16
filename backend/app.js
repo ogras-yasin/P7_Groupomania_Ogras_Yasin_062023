@@ -40,6 +40,16 @@ app.use(
 // Permet de parser et de mettre dans le body toutes les requetes
 app.use(express.json());
 
+// importation de morgan (looger http) //j'ai pas utiiliser encore
+const morgan = require("morgan");
+//logger les request et les response
+app.use(morgan("dev"));
+
+// app.use((req, res, next) => {
+//   console.log("Premiere requete 1");
+//   next();
+// });
+
 app.use("/images", express.static(path.join(__dirname, "images")));
 
 // Routes
