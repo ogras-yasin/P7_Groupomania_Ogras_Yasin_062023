@@ -6,7 +6,8 @@ require("dotenv").config();
 // Routes files
 const userRoutes = require("./routes/user.routes");
 const PostRoutes = require("./routes/post.routes");
-
+const ficheUserRoutes = require("./routes/ficheUser.routes.js");
+// .js eklemdim sonuna gerek yoktu
 mongoose
   .connect(process.env.DB_URL, {
     useNewUrlParser: true,
@@ -56,7 +57,7 @@ app.use("/images", express.static(path.join(__dirname, "images")));
 
 app.use("/api/auth", userRoutes);
 app.use("/api/post", PostRoutes);
-
+app.use("/api/ficheUser", ficheUserRoutes);
 app.use((req, res) => {
   res.json({ message: "Votre requête a bien été reçue !" });
 });

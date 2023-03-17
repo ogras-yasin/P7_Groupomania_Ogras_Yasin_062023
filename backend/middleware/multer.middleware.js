@@ -1,3 +1,5 @@
+// Multer is a middleware used for handling multipart/form-data which is primarily used for uploading files.
+
 const multer = require("multer"); // Importation du package 'multer'
 
 // TYPES DE FICHIERS ACCEPTES
@@ -31,9 +33,8 @@ const storage = multer.diskStorage({
   },
 }); // Création d'un objet de configuration pour 'multer'
 
-// EXPORTS
-// module.exports = multer({ storage }).single("image"); // Exportation du middleware multer
+// Exportation du middleware multer
 module.exports = multer({
   storage: storage,
-  limits: { fileSize: 5000000 },
-}).single("image"); // Exportation du middleware multer
+  limits: { fileSize: 1024 * 1024 * 10 } /* 10MB limit  */,
+}).single("image");

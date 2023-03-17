@@ -2,9 +2,7 @@ import { useState, useRef, useContext } from "react";
 import Wrapper from "../helpers/Wrapper";
 import ErrorModal from "../UI/ErrorModal";
 import Button from "../UI/Button";
-import Navigation from "../UI/Navigation";
 import { NavLink, redirect, useNavigate } from "react-router-dom";
-import MainHeader from "../Layout/MainHeader";
 import AuthContext from "../../store/authContext";
 // import Test from "../Test";
 
@@ -13,17 +11,11 @@ const AuthForm = () => {
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
 
-  const [data, Setdata] = useState("");
   const navigate = useNavigate();
 
   // utilisation du context
   // verification qu'on a acces au contexts
   const authCtx = useContext(AuthContext);
-
-  const example = () => {
-    // alert("test");
-    // localStorage.clear();
-  };
 
   // toogle entre login/signup
   const [isLogin, setIsLogin] = useState(true);
@@ -46,6 +38,10 @@ const AuthForm = () => {
     // async func fetchHandler
     const fetchHandler = async () => {
       try {
+        // premier parametre -->tu va me chercher l'url backend
+        //deuxieme parametre -->GET je recupere les donnees de backend
+        // si POST on passe des donnees
+        // si update on recupere puis on envoie les donnees.
         const response = await fetch(url, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -55,17 +51,13 @@ const AuthForm = () => {
           }),
         });
         const dataResponse = await response.json();
-        // console.log(response);
-        console.log(dataResponse);
         if (response.ok) {
-          Setdata(dataResponse);
           console.log("dataResponse: ==>");
-          console.log(data);
+          console.log(dataResponse);
 
           // mettre a jour le token dans le context
           authCtx.login(dataResponse.token, dataResponse.userId);
-          // dirige vers la page accueil /fiche utilisateur
-          navigate("/FicheUser");
+          navigate(`/FicheUser/${authCtx.userId}`);
         } else {
           setError({
             title: "Authentification echec",
@@ -73,47 +65,12 @@ const AuthForm = () => {
           });
         }
       } catch (error) {
-        console.log(error); /* erreur lier au serveur */
+        console.log(error);
+        /* erreur lier au serveur */
       }
     };
 
     fetchHandler();
-
-    // fetch(url, {
-    //   method: "POST",
-    //   headers: { "Content-Type": "application/json" },
-    //   body: JSON.stringify({
-    //     email: enteredEmail,
-    //     password: enteredPassword,
-    //   }),
-    // })
-    //   .then((response) => {
-    //     // Logique pour avertir l'utilisateur en cas d'erreur avec setError
-    //     console.log("response :   ", response);
-    //     // recup du status de la res si ok(200-299)
-    //     if (response.ok) {
-    //       console.log(response);
-    //       navigate("/FicheUser");
-
-    //       return response.json();
-    //       //  ici cette ligne transforme le body de stringify a json
-    //     } else {
-    //       console.log(" res.ok a false");
-
-    //       setError({
-    //         title: "Authentification echec",
-    //         message: "Erreur veuillez respecter les conditions",
-    //       });
-
-    //       return response.json();
-    //     }
-    //   })
-    //   .then((data) => {
-    //     console.log("data:   ", data);
-    //     // Enregistrer token ok  //se deconnecter ne fonctionne pas
-    //     localStorage.setItem("token", `${data.token}`);
-    //   })
-    //   .catch((err) => err);
 
     // controle validite her sey bittikten sonra buraya koyarson regex filan
 
@@ -129,15 +86,13 @@ const AuthForm = () => {
     setIsLogin((prevState) => !prevState);
   };
 
-  // faire fonctionner la fonction errorhandler lorsque on clique sur ok qui est un composant enfant
+  // faire fonctionner la fonction errorhandler lorsqu'on clique sur ok qui est un composant enfant
   const errorHandler = () => {
     setError(null);
   };
 
   return (
     <Wrapper>
-      {/* <Navigation /> */}
-      {/* <MainHeader /> */}
       <div className="App">
         {/* si erreur alors nous invoquons la module d'erreur */}
         {error && (
@@ -188,7 +143,6 @@ const AuthForm = () => {
           <p onClick={toogleAuthModeHandler} className="toogleAuthMode">
             {isLogin ? "Créer un compte " : "Se connecter"}
           </p>
-          {/* <Button onClickProps={() => {}}>Se deconnecter</Button> */}
         </form>
       </div>
     </Wrapper>

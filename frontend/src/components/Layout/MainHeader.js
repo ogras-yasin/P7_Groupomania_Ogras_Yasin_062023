@@ -22,7 +22,7 @@ const MainHeader = () => {
             </NavLink>
             {isLoggedIn && (
               <NavLink
-                to="/FicheUser"
+                to={`/ficheUser/${authCtx.userId}`}
                 className={({ isActive }) => (isActive ? "active" : "")}
               >
                 <li className="header-nav-li">Fiche User</li>
@@ -31,11 +31,11 @@ const MainHeader = () => {
             {isLoggedIn && (
               <NavLink className={({ isActive }) => (isActive ? "" : "")}>
                 <li
+                  to={"/"}
                   className={`${"header-nav-li"} ${"disconnect"}`}
                   onClick={() => {
                     console.log("deconection apuyer");
                     // useNavigate()
-
                     authCtx.logout();
                   }}
                 >

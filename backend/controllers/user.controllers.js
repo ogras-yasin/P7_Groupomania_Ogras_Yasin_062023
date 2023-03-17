@@ -23,6 +23,14 @@ exports.signup = (req, res, next) => {
         .then(() =>
           res.status(201).json({
             message: "Utilisateur créé !",
+            // BENIM YAZDIGIM ONUN SILDIGI 16.03.23 discord chti dev
+            //   message: "Utilisateur créé !",
+            //   email: req.body.email,
+            //   userId: user._id,
+            //   token: jwt.sign({ userId: user._id }, process.env.SECRET_TOKEN, {
+            //     expiresIn: "240h",
+
+            // })
           })
         )
         .catch(

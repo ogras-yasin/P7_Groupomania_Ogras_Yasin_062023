@@ -11,7 +11,6 @@ const defaultValue = {
 };
 
 // Creation du context pour l'autentification
-
 const AuthContext = createContext(defaultValue);
 
 // le context provider pour wrapper app.js
