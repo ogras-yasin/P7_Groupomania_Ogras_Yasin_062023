@@ -8,8 +8,10 @@ exports.createFicheUser = (req, res, next) => {
   console.log("req.body====>", req.body);
   // return;
   // COK ONEMLI APLLICATION/JSON ILE DEGIL SADECE FORM/DATA ILE YOLLA cunku image'da var
+
   const addPost = new FicheUser({
-    userId: req.auth.userId, // Le token est demonter par le middleware auth, ici on recupere userId de  auth
+    userId: req.auth.userId,
+    // Le token est demonter par le middleware auth, ici on recupere userId de  auth, donc tres securisée
 
     age: postObject.age,
     prenom: postObject.prenom,
@@ -37,10 +39,13 @@ exports.updateFicheUser = (req, res, next) => {
   // console.log("req.body");
   // console.log(req.body);
   FicheUser.updateOne(
-    { _id: req.params.id },
+    { userId: req.params.id },
     {
       ...req.body,
-      _id: req.params.id,
+      photoProfilUrl: `${req.protocol}://${req.get("host")}/images/${
+        req.file.filename
+      }`,
+      // _id: req.params.id,
     }
   )
     .then((object) => {
@@ -54,30 +59,16 @@ exports.updateFicheUser = (req, res, next) => {
     });
 };
 
-/* // recuperer un Profil specifique
-exports.findSingleFicheUser = (req, res, next) => {
-  // original
-  FicheUser.findOne({ _id: req.params.id })
-    .then((insidePromise) => {
-      console.log(req.params);
-      res.status(200).json({ msg: "fiche user recu", insidePromise });
-    })
-    // .sort({ createdAt: -1 }) pour regler le fil du commentaire
-    .catch((error) => {
-      res.status(400).json({ error: error });
-    });
-}; */
 // récupérer un profil spécifique
 exports.findSingleFicheUser = (req, res, next) => {
-  console.log("req.params.id==>", req.params.id);
-  FicheUser.findById(req.params.id)
-    // FicheUser.findOne({ _id: req.params.id })
+  // FicheUser.findById(req.params.id)
+  FicheUser.findOne({ userId: req.params.id })
+    // .sort({ createdAt: -1 }) pour regler le fil du commentaire
 
     .then((ficheUser) => {
       if (!ficheUser) {
         throw new Error("ficheUser not found");
       }
-      console.log("ficheUser==>", ficheUser);
       res.status(200).json({ msg: "ficheUser found", ficheUser });
     })
     .catch((error) => {

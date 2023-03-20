@@ -1,0 +1,35 @@
+.user{
+    margin: 0.5rem;
+    /* background-color: ; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.user img{
+    height: 10rem;
+    margin: 2rem;
+}
+
+.user h1{
+    font: inherit;
+    font-size: 2rem;
+    font-weight: bold;
+    /* color: rgb(23, 21, 21); */
+}
+
+.user button{
+font-size: 1.5rem;
+margin-right: 0.5rem;
+
+}
+
+.user-description {
+    color: black;
+    font-weight: bold;
+}
+
+.user button:nth-child(2){
+    background-color: red;
+}
