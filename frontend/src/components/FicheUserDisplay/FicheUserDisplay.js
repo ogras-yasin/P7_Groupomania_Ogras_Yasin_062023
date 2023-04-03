@@ -23,6 +23,7 @@ const FicheUserDisplay = ({ data }) => {
   const handleChangeImage = (event) => {
     const newPhoto = event.target.files[0];
     console.log("image==>", newPhoto);
+    console.log("event==>", event);
 
     setSelectedImage(newPhoto);
 
@@ -63,7 +64,7 @@ const FicheUserDisplay = ({ data }) => {
     formData.append("post", dataUpdate);
     console.log(formData.get("post"));
 
-    const url = "localhost:3000/api/ficheUser/641449d4c192e7ea51c76a9f";
+    const url = "localhost:3000/api/ficheUser/641af2a83635b744899eed8a";
     const fetchUploadHandler = async () => {
       try {
         const response = await fetch(url, {

@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const path = require("path");
 const helmet = require("helmet");
 require("dotenv").config();
+const cors = require("cors");
 // Routes files
 const userRoutes = require("./routes/user.routes");
 const PostRoutes = require("./routes/post.routes");
@@ -18,19 +19,27 @@ mongoose
 
 const app = express();
 
+// CORS gerek kalmadi car require
 // Cors (need to create a config file for better lisibility)
-app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content, Accept, Content-Type, Authorization"
-  );
-  res.setHeader(
-    "Access-Control-Allow-Methods",
-    "GET, POST, PUT, DELETE, PATCH, OPTIONS"
-  );
-  next();
-});
+// app.use((req, res, next) => {
+//   res.setHeader("Access-Control-Allow-Origin", "*");
+//   res.setHeader(
+//     "Access-Control-Allow-Headers",
+//     "Origin, X-Requested-With, Content, Accept, Content-Type, Authorization"
+//   );
+//   res.setHeader(
+//     "Access-Control-Allow-Methods",
+//     "GET, POST, PUT, DELETE, PATCH, OPTIONS"
+//   );
+//   res.setHeader("Cross-Origin-Resource-Policy", "same-site");
+//   next();
+// });
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(helmet());
+app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
+app.use(cors());
 
 app.use(
   helmet({
@@ -38,18 +47,13 @@ app.use(
     crossOriginResourcePolicy: false,
   })
 );
+
 // Permet de parser et de mettre dans le body toutes les requetes
-app.use(express.json());
 
 // importation de morgan (looger http) //j'ai pas utiiliser encore
 const morgan = require("morgan");
 //logger les request et les response
 app.use(morgan("dev"));
-
-// app.use((req, res, next) => {
-//   console.log("Premiere requete 1");
-//   next();
-// });
 
 app.use("/images", express.static(path.join(__dirname, "images")));
 

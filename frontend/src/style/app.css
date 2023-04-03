@@ -1,13 +1,22 @@
 
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Lato:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+
+
 html, body {
     height: 100%;
   }
   
+  button{
+    font-family: "Lato" 
+  }
   body {
     min-height: 100vh;
     margin: 0;
     background-color: grey;
     color: white;
+    font-family: "Lato","Times New Roman", sans-serif;
+    font-weight: 400
     /* background: linear-gradient(77deg, #da39d2 0%, #FD2D01 52%,#FFD7D7 ); */
   }
 

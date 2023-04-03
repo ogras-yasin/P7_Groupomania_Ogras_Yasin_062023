@@ -1,7 +1,6 @@
 button{
     margin: 10px 0;
     border: none;
-    background-color: white;
     padding: 20px;
     border-radius: 10px;
     cursor: pointer;
@@ -9,7 +8,8 @@ button{
     /* color: ; */
 }
 
-button:hover{
+button[type=button]:hover{
+    /* Utiliser un sélecteur plus spécifique pour limiter les styles */
     transition: ease  250ms ;
     box-shadow: inset 0 0 5px black
 }

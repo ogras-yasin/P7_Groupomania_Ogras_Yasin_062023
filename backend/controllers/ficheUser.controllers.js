@@ -12,7 +12,7 @@ exports.createFicheUser = (req, res, next) => {
   const addPost = new FicheUser({
     userId: req.auth.userId,
     // Le token est demonter par le middleware auth, ici on recupere userId de  auth, donc tres securisée
-
+    nom: postObject.nom,
     age: postObject.age,
     prenom: postObject.prenom,
     photoProfilUrl: `${req.protocol}://${req.get("host")}/images/${
@@ -76,17 +76,16 @@ exports.findSingleFicheUser = (req, res, next) => {
     });
 };
 
-// recuperer toutes les Post
+/* // recuperer toutes les Post
 exports.findFicheUser = (req, res, next) => {
   console.log(req);
   FicheUser.find()
     .then((getAllPost) => {
-      // console.log(getAllPost);
       res.status(200).json({ msg: "read", getAllPost });
     })
     .catch((error) => res.status(400).json({ error: error }));
 };
-
+ */
 // supprimer un post
 
 exports.deleteFicheUser = (req, res, next) => {

@@ -1,7 +1,3 @@
-// import "./style/app.css";
-
-// import { useState, useEffect } from "react";
-
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 // import Exercice from "./components/UI/Exercice";
 import AuthContext, { AuthContextProvider } from "./store/authContext";
@@ -18,8 +14,6 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />}></Route>
-          {/* des qu'on se connecte il nous envoie a fiche user */}
-          {/* <Route path="/ficheUser/" element={<FicheUser />}></Route> */}
           <Route path="/ficheUser/:id" element={<FicheUser />}></Route>
           <Route path="*" element={<NotFound />}></Route>
         </Routes>
@@ -29,3 +23,5 @@ function App() {
 }
 
 export default App;
+
+// REGARDE CHAQUE PAGE  et comprendre le fonctionnement de mon site

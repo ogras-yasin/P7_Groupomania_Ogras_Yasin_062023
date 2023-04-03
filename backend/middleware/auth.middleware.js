@@ -12,7 +12,7 @@ module.exports = (req, res, next) => {
     jwt.verify(token, process.env.SECRET_TOKEN, (error, decodedToken) => {
       if (error) {
         req.auth = null;
-        res.status(401).json({ message: "session expirée" });
+        res.status(402).json({ message: "session expirée" });
       } else {
         req.auth = {
           userId: decodedToken.userId,

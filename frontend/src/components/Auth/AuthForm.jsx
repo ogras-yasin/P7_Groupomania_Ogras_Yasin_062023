@@ -14,7 +14,6 @@ const AuthForm = () => {
   const navigate = useNavigate();
 
   // utilisation du context
-  // verification qu'on a acces au contexts
   const authCtx = useContext(AuthContext);
 
   // toogle entre login/signup
@@ -40,8 +39,7 @@ const AuthForm = () => {
       try {
         // premier parametre -->tu va me chercher l'url backend
         //deuxieme parametre -->GET je recupere les donnees de backend
-        // si POST on passe des donnees
-        // si update on recupere puis on envoie les donnees.
+
         const response = await fetch(url, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -56,8 +54,13 @@ const AuthForm = () => {
           console.log(dataResponse);
 
           // mettre a jour le token dans le context
-          authCtx.login(dataResponse.token, dataResponse.userId);
-          navigate(`/FicheUser/${authCtx.userId}`);
+          authCtx.login(
+            dataResponse.token,
+            dataResponse.userId,
+            dataResponse.isAdmin
+          );
+          // navigate(`/FicheUser/${authCtx.userId}`);
+          navigate(`/`);
         } else {
           setError({
             title: "Authentification echec",

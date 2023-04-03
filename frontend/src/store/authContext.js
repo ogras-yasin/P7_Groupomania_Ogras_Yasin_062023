@@ -1,5 +1,4 @@
 import { createContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 // The defaultValue parameter sets an initial value for the context, which can be overridden by any child component that provides its own value for the context.
 const defaultValue = {
@@ -8,6 +7,7 @@ const defaultValue = {
   userIsLoggedIn: false,
   login: () => {},
   logOutHandler: () => {},
+  isAdmin: false,
 };
 
 // Creation du context pour l'autentification
@@ -17,15 +17,15 @@ const AuthContext = createContext(defaultValue);
 export const AuthContextProvider = (props) => {
   const [token, setToken] = useState(null);
   const [userId, setUserId] = useState(null);
-  // stockage du token d'authentification
+  const [isAdmin, setIsAdmin] = useState(false);
+  // console.log("token =>>", token);
 
   // une fonction pour mettre a jour le token dans le state
-  const loginHandler = (token, userId) => {
+  const loginHandler = (token, userId, isAdmin) => {
     // alert("test");
     setToken(token);
     setUserId(userId);
-    // mettre la donnee dans le localStorage
-    // POURQUOI IL FONCTIONE PAS  pourtant toke et userId fonctionne
+    setIsAdmin(isAdmin);
     localStorage.setItem("token", token);
   };
 
@@ -35,21 +35,21 @@ export const AuthContextProvider = (props) => {
     setToken(null);
     localStorage.removeItem("token");
   };
-  // s'il y a presence du token ca veut dire que je suis loggé
-  // convertir le token en valeur booleene avec !=vrai et !!=false
 
-  const userIsLoggedIn = !!token;
-  // console.log("--> userIsLoggedIn");
-  // console.log(userIsLoggedIn);
+  // convertir le token en valeur booleene avec !=vrai et !!=false
+  const userIsLoggedIn = !!token; /*  || !!initialToken; */
+  // Si "token" est une valeur truthy (c'est-à-dire une valeur qui est considérée comme vraie en JavaScript alors elle renverra true
 
   // le context value //ceci peuvent etre recuperer par useContext
+
   const contextValue = {
     token: token,
     userId: userId,
+    isAdmin: isAdmin,
     isLoggedIn: userIsLoggedIn,
     login: loginHandler,
     logout: logoutHandler,
-    //cette fonction loginHandler met a jour les 2 states en meme temps
+    //cette fonction loginHandler met a jour les 3 states en meme temps
   };
   return (
     <AuthContext.Provider value={contextValue}>
@@ -59,3 +59,8 @@ export const AuthContextProvider = (props) => {
 };
 
 export default AuthContext;
+
+// const initialToken = localStorage.getItem("token");
+// const [token, setToken] = useState(initialToken);
+
+// De cette façon, si un token est enregistré dans le localStorage lors du chargement initial de la page, userIsLoggedIn sera défini sur true et l'utilisateur restera connecté après le rechargement de la page

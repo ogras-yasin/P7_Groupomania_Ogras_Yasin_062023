@@ -16,29 +16,15 @@ exports.signup = (req, res, next) => {
         email: req.body.email,
         password: hash,
       });
-      // console.log(user);//verifier si je RENVOIE une res
       user
         .save()
-        // type de message attendue { message: string } accomplie
         .then(() =>
           res.status(201).json({
             message: "Utilisateur créé !",
-            // BENIM YAZDIGIM ONUN SILDIGI 16.03.23 discord chti dev
-            //   message: "Utilisateur créé !",
-            //   email: req.body.email,
-            //   userId: user._id,
-            //   token: jwt.sign({ userId: user._id }, process.env.SECRET_TOKEN, {
-            //     expiresIn: "240h",
-
-            // })
           })
         )
-        .catch(
-          (error) =>
-            res
-              .status(400)
-              .json({ error: "Ce nom Utilisateur est déjà utilisé" })
-          // devrai-je mettre un jwt.sign, envoyer un token
+        .catch((error) =>
+          res.status(400).json({ error: "Ce nom Utilisateur est déjà utilisé" })
         );
     })
     .catch((error) => {
@@ -72,7 +58,7 @@ exports.login = (req, res, next) => {
               //  In computing and telecommunications, the PAYLOAD is the part of transmitted data that is the actual intended message. Headers and metadata are sent only to enable payload delivery
               // ce token contient l'ID de l'utilisateur en tant que payload
               // (les données encodées dans le token) ;
-
+              isAdmin: user.isAdmin,
               userId: user._id,
               token: jwt.sign({ userId: user._id }, process.env.SECRET_TOKEN, {
                 expiresIn: "240h",
