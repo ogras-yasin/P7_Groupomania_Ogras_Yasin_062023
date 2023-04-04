@@ -3,25 +3,26 @@ import AuthContext from "../../store/authContext";
 import "../../style/PostCard.css";
 import Button from "../UI/Button";
 import DeletePostCard from "./DeletePostCard";
+import UpdatePostCart from "./UpdatePostCart";
 
 const PostCard = (props) => {
   const { title, imageUrl, description, _id, likes } = props.item;
   console.log("props.item ==> ", props.item);
   console.log("props ==> ", props);
-  const handleDelete = async () => {
-    const url = `http://localhost:3000/api/post/${_id}`;
-    const response = await fetch(url, {
-      method: "DELETE",
-      headers: {
-        Authorization: "Bearer " + localStorage.getItem("token"),
-      },
-    });
-    if (response.ok) {
-      console.log("Post supprimer avec succes");
-    } else {
-      console.log("Erreur lors de la supression du post");
-    }
-  };
+  // const handleDelete = async () => {
+  //   const url = `http://localhost:3000/api/post/${_id}`;
+  //   const response = await fetch(url, {
+  //     method: "DELETE",
+  //     headers: {
+  //       Authorization: "Bearer " + localStorage.getItem("token"),
+  //     },
+  //   });
+  //   if (response.ok) {
+  //     console.log("Post supprimer avec succes");
+  //   } else {
+  //     console.log("Erreur lors de la supression du post");
+  //   }
+  // };
 
   const [toogleUpdatePost, setToogleUpdatePost] = useState(false);
   const [updateDescription, setUpdateDescription] = useState();
@@ -152,11 +153,14 @@ const PostCard = (props) => {
       {/* DELETE CA FONCTIONNE */}
       <DeletePostCard item={props} />
       {/* -----------deplacer ca dans update */}
-      {authCtx.userId === props.item.userId ? (
-        <Button className="updateButton" onClickProps={handleModification}>
-          {!toogleUpdatePost ? "Modifier le post" : "Annuler"}
-        </Button>
-      ) : null}
+      {/* {authCtx.userId === props.item.userId ? ( */}
+      <>
+        {/* <Button className="updateButton" onClickProps={handleModification}>
+            {!toogleUpdatePost ? "Modifier le post" : "Annuler"}
+          </Button> */}
+        <UpdatePostCart item={props} />
+      </>
+      {/* // ) : null} */}
     </div>
   );
 };

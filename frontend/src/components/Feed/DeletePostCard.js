@@ -27,7 +27,7 @@ const DeletePostCard = (props) => {
     <div>
       {authCtx.isAdmin === true || authCtx.userId === props.item.userId ? (
         <Button className="deleteButton" onClickProps={handleDelete}>
-          Suprimer le post
+          Suprimer le postss
         </Button>
       ) : null}
     </div>
