@@ -31,8 +31,10 @@ exports.likePost = (req, res) => {
           { _id: req.params.id },
           { $inc: { likes: -1 }, $pull: { usersLiked: req.body.userId } }
         )
-          .then(() => {
-            res.status(201).json({ msg: "enlever le like" });
+          .then((getAllPost) => {
+            res
+              .status(200)
+              .json({ msg: "enlever le like", getAllPost: getAllPost });
           })
           .catch((error) => res.status(400).json({ error: error }));
       }
@@ -47,3 +49,24 @@ exports.likePost = (req, res) => {
       res.status(400).json({ error: error });
     });
 };
+
+// recuperer toutes les likes
+exports.getLikePost = (req, res) => {
+  Post.findOne({ _id: req.params.id })
+    .then((ThePost) => {
+      console.log("ThePost", ThePost);
+      res.status(201).json({ thePost: ThePost });
+    })
+    .catch((error) => res.status(400).json({ error: error }));
+};
+
+// recuperer toutes les Post
+// exports.findPost = (req, res, next) => {
+//   Post.find()
+//     .then((getAllPost) => {
+//       console.log(getAllPost);
+//       // res.status(200).json({ msg: "read", getAllPost });
+//       res.status(200).json(getAllPost);
+//     })
+//     .catch((error) => res.status(400).json({ error: error }));
+// };

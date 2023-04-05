@@ -4,8 +4,8 @@
 }
 
 .post-card button {
-    background-color: #ff0000;
-    color: white;
+    /* background-color: #ff0000; */
+    /* color: white; */
 }
 
 
@@ -17,4 +17,13 @@
 .like{
     cursor: pointer
 }
+
+.post-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    text-align: center;
+  }
 /* j'ai pas reussi yellow voir en detaille 29.03  */

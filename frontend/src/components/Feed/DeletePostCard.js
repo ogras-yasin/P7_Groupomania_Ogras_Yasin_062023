@@ -4,8 +4,8 @@ import Button from "../UI/Button";
 
 const DeletePostCard = (props) => {
   const { title, imageUrl, description, _id, likes } = props.item.item;
-  console.log("delete props.item==>", props.item.item);
-  console.log("delete props==>", props);
+  // console.log("delete props.item==>", props.item.item);
+  // console.log("delete props==>", props);
   const authCtx = AuthContext;
 
   const handleDelete = async () => {
@@ -27,7 +27,7 @@ const DeletePostCard = (props) => {
     <div>
       {authCtx.isAdmin === true || authCtx.userId === props.item.userId ? (
         <Button className="deleteButton" onClickProps={handleDelete}>
-          Suprimer le postss
+          Suprimer le posts
         </Button>
       ) : null}
     </div>
