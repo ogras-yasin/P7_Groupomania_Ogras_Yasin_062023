@@ -2,15 +2,18 @@ import React, { useContext, useEffect, useState } from "react";
 import AuthContext from "../../store/authContext";
 import CreatePostCard from "./CreatePostCard";
 import PostCard from "./PostCard";
-import "../../style/PostCard.css";
+import "../../style/Post-card-parent.css";
 const Post = () => {
   const [dataPost, setDataPost] = useState([]);
   const AuthCtx = useContext(AuthContext);
+  // console.log(AuthCtx.token);
 
+  // recuperation de tous les posts
   useEffect(() => {
     const fetchPosts = async () => {
       try {
         const response = await fetch("http://localhost:3000/api/post", {
+          method: "GET",
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${AuthCtx.token}`,
@@ -31,22 +34,11 @@ const Post = () => {
     fetchPosts();
   }, [AuthCtx.token]);
 
-  const [posts, setPosts] = useState([]);
-  const handleLike = (postId, newLikes) => {
-    setPosts((prevPosts) =>
-      prevPosts.map((post) =>
-        post._id === postId ? { ...post, likes: newLikes } : post
-      )
-    );
-  };
-
   return (
-    <section className="post-card">
-      <CreatePostCard setDataPost={setDataPost} dataPost={dataPost} />
+    <section className="post-card-all">
+      <CreatePostCard />
       {dataPost.length > 0 ? (
-        dataPost.map((item) => (
-          <PostCard item={item} key={item._id} onLike={handleLike} />
-        ))
+        dataPost.map((item) => <PostCard item={item} key={item._id} />)
       ) : (
         <p>Aucun post trouvé.</p>
       )}

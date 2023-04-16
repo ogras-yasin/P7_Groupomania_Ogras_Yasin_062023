@@ -1,0 +1,14 @@
+.create-post{
+        display: flex;
+        flex-direction: column;
+        /* align-items: center; */
+        /* justify-content: center; */
+        /* align-items: start; */
+        align-items: start;
+        padding: 20px;
+        text-align: center;
+        justify-content: space-between;
+        background-color: rgba(43, 219, 69, 0.443); 
+        border-radius: 5px;
+        margin: 10px;
+}

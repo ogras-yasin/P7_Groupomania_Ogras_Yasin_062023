@@ -14,7 +14,6 @@ exports.likePost = (req, res) => {
           { $inc: { likes: 1 }, $push: { usersLiked: req.body.userId } }
         )
           .then((getAllPost) => {
-            console.log("getAllPost ==>", getAllPost);
             res
               .status(200)
               .json({ msg: "like ajoutée", getAllPost: getAllPost });
@@ -50,23 +49,13 @@ exports.likePost = (req, res) => {
     });
 };
 
+// JE NUTILISE PAS j'espere ne pas utiliser
 // recuperer toutes les likes
 exports.getLikePost = (req, res) => {
   Post.findOne({ _id: req.params.id })
     .then((ThePost) => {
       console.log("ThePost", ThePost);
-      res.status(201).json({ thePost: ThePost });
+      res.status(201).json({ thePost: ThePost, likes: ThePost.likes });
     })
     .catch((error) => res.status(400).json({ error: error }));
 };
-
-// recuperer toutes les Post
-// exports.findPost = (req, res, next) => {
-//   Post.find()
-//     .then((getAllPost) => {
-//       console.log(getAllPost);
-//       // res.status(200).json({ msg: "read", getAllPost });
-//       res.status(200).json(getAllPost);
-//     })
-//     .catch((error) => res.status(400).json({ error: error }));
-// };

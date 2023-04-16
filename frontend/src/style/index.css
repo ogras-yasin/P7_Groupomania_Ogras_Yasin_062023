@@ -3,6 +3,9 @@
 @import url("./app.css");
 @import url("./card.css");
 @import url("./login-signUp.css");
+
 @import url("./Button.module.css");
+/* @import url("./Button-red.css");s */
+@import url("./ficheUserDisplay.css");
 /* @import url("./MainHeader.css"); bunu koyma */
 @import url();

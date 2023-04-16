@@ -4,7 +4,8 @@ button{
     padding: 20px;
     border-radius: 10px;
     cursor: pointer;
-    background-color: greenyellow;
+    /* background-color: greenyellow; */
+    background-color:  #FFD7D7;
     /* color: ; */
 }
 

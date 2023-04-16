@@ -2,7 +2,6 @@ import { useState, useRef, useContext } from "react";
 import Wrapper from "../helpers/Wrapper";
 import ErrorModal from "../UI/ErrorModal";
 import Button from "../UI/Button";
-import { NavLink, redirect, useNavigate } from "react-router-dom";
 import AuthContext from "../../store/authContext";
 // import Test from "../Test";
 
@@ -10,8 +9,6 @@ const AuthForm = () => {
   // jutilise useRef pour recup les donnees input
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
-
-  const navigate = useNavigate();
 
   // utilisation du context
   const authCtx = useContext(AuthContext);
@@ -59,8 +56,6 @@ const AuthForm = () => {
             dataResponse.userId,
             dataResponse.isAdmin
           );
-          // navigate(`/FicheUser/${authCtx.userId}`);
-          navigate(`/`);
         } else {
           setError({
             title: "Authentification echec",
@@ -112,11 +107,9 @@ const AuthForm = () => {
           onSubmit={handleSubmit}
           className="register-form"
         >
-          {/* <h1>Groupomania</h1> */}
           {isLogin ? <h2>Se connecter</h2> : <h2>Créer un compte</h2>}
           <label htmlFor="email">Email</label>
           <input
-            // value={}
             onChange={(e) => {}}
             type="email"
             id="email"
@@ -127,19 +120,13 @@ const AuthForm = () => {
           <label htmlFor="pass">Password</label>{" "}
           <input
             onChange={(e) => {}}
-            // value={}
             type="password"
             id="pass"
             name="pass"
             placeholder="password"
             ref={passwordInputRef}
           />
-          <Button
-            type={"submit"}
-            onClickProps={() => {
-              localStorage.setItem("monChat", "TomJerry");
-            }}
-          >
+          <Button type={"submit"}>
             {isLogin ? "Se connecter" : "S'inscrire"}
             {/* se connceter ou s'inscrire si token generer dirige moi vers accueil */}
           </Button>

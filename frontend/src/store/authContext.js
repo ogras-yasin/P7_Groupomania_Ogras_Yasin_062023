@@ -1,56 +1,62 @@
 import { createContext, useState } from "react";
+// import jwt from "jsonwebtoken";
+// TOKEN I YENIDEN INDERMEM LAZIM
+// supprime le node module et reinstale l'app
+// ((((((((((((((((--- ))))))))))))))))
 
 // The defaultValue parameter sets an initial value for the context, which can be overridden by any child component that provides its own value for the context.
 const defaultValue = {
-  token: "vide",
+  token: null,
   userId: "",
-  userIsLoggedIn: false,
+  isLoggedIn: false,
   login: () => {},
-  logOutHandler: () => {},
+  logout: () => {},
   isAdmin: false,
 };
 
-// Creation du context pour l'autentification
+// const AuthContext = createContext(defaultValue);
 const AuthContext = createContext(defaultValue);
 
 // le context provider pour wrapper app.js
+console.log(localStorage.getItem("token"));
+
 export const AuthContextProvider = (props) => {
-  const [token, setToken] = useState(null);
-  const [userId, setUserId] = useState(null);
-  const [isAdmin, setIsAdmin] = useState(false);
-  // console.log("token =>>", token);
+  const [token, setToken] = useState(localStorage.getItem("token") || null);
+  const [userId, setUserId] = useState(localStorage.getItem("userId") || null);
+  const [isAdmin, setIsAdmin] = useState(
+    localStorage.getItem("isAdmin") || false
+  );
 
   // une fonction pour mettre a jour le token dans le state
-  const loginHandler = (token, userId, isAdmin) => {
-    // alert("test");
+  const login = (token, userId, isAdmin) => {
     setToken(token);
     setUserId(userId);
     setIsAdmin(isAdmin);
+    // enregistrer token, userId et isAdmin ds le localstorage afin de recuperer ces donnees lors du f5
     localStorage.setItem("token", token);
+    localStorage.setItem("userId", userId);
+    localStorage.setItem("isAdmin", isAdmin);
   };
 
   // fonction pour se deconnecter
-  const logoutHandler = () => {
-    // suprimer le token de useState et LocalStorage
+  const logout = () => {
     setToken(null);
     localStorage.removeItem("token");
+    localStorage.removeItem("userId");
+    localStorage.removeItem("isAdmin");
   };
 
-  // convertir le token en valeur booleene avec !=vrai et !!=false
-  const userIsLoggedIn = !!token; /*  || !!initialToken; */
-  // Si "token" est une valeur truthy (c'est-à-dire une valeur qui est considérée comme vraie en JavaScript alors elle renverra true
-
-  // le context value //ceci peuvent etre recuperer par useContext
+  const isLoggedIn = !!token;
 
   const contextValue = {
-    token: token,
-    userId: userId,
-    isAdmin: isAdmin,
-    isLoggedIn: userIsLoggedIn,
-    login: loginHandler,
-    logout: logoutHandler,
-    //cette fonction loginHandler met a jour les 3 states en meme temps
+    token,
+    userId,
+    isAdmin,
+    isLoggedIn,
+    login,
+    logout,
   };
+
   return (
     <AuthContext.Provider value={contextValue}>
       {props.children}
@@ -59,8 +65,7 @@ export const AuthContextProvider = (props) => {
 };
 
 export default AuthContext;
-
-// const initialToken = localStorage.getItem("token");
-// const [token, setToken] = useState(initialToken);
-
-// De cette façon, si un token est enregistré dans le localStorage lors du chargement initial de la page, userIsLoggedIn sera défini sur true et l'utilisateur restera connecté après le rechargement de la page
+// !! veut dire truthy
+// Je transforme userIsLoggedIn en Boolean SI il trouve un token dans le state token
+// const userIsLoggedIn = !!token;
+// Il ne peut pas trouver token car il doit passer pas authform directement avant

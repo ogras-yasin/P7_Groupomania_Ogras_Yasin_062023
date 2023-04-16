@@ -1,0 +1,32 @@
+.post-card-children {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    text-align: center;
+    justify-content: space-between;
+    background-color: rgba(58, 201, 80, 0.443); 
+    border-radius: 5px;
+    margin: 10px;
+  }
+
+  .button-card{
+    display: flex;
+    flex-direction: row ;
+    margin: 10px;
+    display: flex;
+    justify-content: space-around;
+  }
+  button{
+    margin: 10px !important
+  }
+
+  h1.title, .description{
+background-color:#efacac;
+color:white;
+padding: 7px 30px;
+border-radius: 10px;
+  }
+  
+  

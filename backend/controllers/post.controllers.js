@@ -106,7 +106,9 @@ exports.findPost = (req, res, next) => {
       // res.status(200).json({ msg: "read", getAllPost });
       res.status(200).json(getAllPost);
     })
-    .catch((error) => res.status(400).json({ error: error }));
+    .catch((error) => {
+      res.status(500).json({ error: error });
+    });
 };
 
 // supprimer un post

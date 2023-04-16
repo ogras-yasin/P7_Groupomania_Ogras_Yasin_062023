@@ -14,6 +14,6 @@ router.delete("/:id", auth, postCtrl.deletePost);
 
 // systeme de like
 router.post("/:id/like", auth, likeCtrl.likePost);
-router.get("/:id/like", auth, likeCtrl.getLikePost);
+// router.get("/:id/like", auth, likeCtrl.getLikePost);
 
 module.exports = router;

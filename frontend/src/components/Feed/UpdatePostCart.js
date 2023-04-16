@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
 import AuthContext from "../../store/authContext";
 import Button from "../UI/Button";
+import Post from "./Post";
 
 const UpdatePostCart = (props) => {
   // console.log("props======>", props.item.item._id);
@@ -8,6 +9,7 @@ const UpdatePostCart = (props) => {
   const [toogleUpdatePost, setToogleUpdatePost] = useState(false);
   const [updateDescription, setUpdateDescription] = useState();
   const [titleInput, setTitleInput] = useState();
+  const [statusCreated, setStatusCreated] = useState(false);
 
   const handleModification = () => {
     setToogleUpdatePost((toogleUpdatePost) => !toogleUpdatePost);
@@ -36,6 +38,7 @@ const UpdatePostCart = (props) => {
     });
     if (response.ok) {
       console.log("Post update");
+      // setStatusCreated(true);
     } else {
       console.log("Error Post not updated");
     }
@@ -49,59 +52,66 @@ const UpdatePostCart = (props) => {
   const handleInputTitle = (e) => {
     setTitleInput(e.target.value);
   };
+  console.log(authCtx.userId, "updatePost userId ===<");
+  // console.log("update statusCreated", statusCreated);
   // HANDLE INPUTU DA OKUTALIM APRES C BON JE PENSE . ON DOIT SUREMENT PASSER DANS PPROS
-
-  return (
-    <div>
-      <form onSubmit={handleUpdateFormSubmit}>
-        {/* -------- titre ----------  */}
-        {toogleUpdatePost && (
-          <>
-            <label htmlFor="title"></label>
-            <input
-              type="text"
-              id="title"
-              value={titleInput}
-              placeholder="title"
-              onChange={handleInputTitle}
-            />
-          </>
-        )}
-        <div>
+  if (statusCreated) {
+    // return <Post />;
+  } else {
+    return (
+      <div>
+        {/* button modifier eksik  */}
+        <form onSubmit={handleUpdateFormSubmit}>
+          {/* -------- titre ----------  */}
+          {toogleUpdatePost && (
+            <>
+              <label htmlFor="title"></label>
+              <input
+                type="text"
+                id="title"
+                value={titleInput}
+                placeholder="title"
+                onChange={handleInputTitle}
+              />
+            </>
+          )}
           {/* ------ image --------  */}
+          <div>
+            {toogleUpdatePost && (
+              <div>
+                <label htmlFor="image">Image:</label>
+                <input type="file" id="image" name="image" accept="*" />
+              </div>
+            )}
+          </div>
+          {/* ---------- description ------------  */}
 
           {toogleUpdatePost && (
-            <div>
-              <label htmlFor="image">Image:</label>
-              <input type="file" id="image" name="image" accept="*" />
-            </div>
+            <>
+              <label>description: </label>
+              <input
+                placeholder="description"
+                type="text"
+                id="description"
+                onChange={handleInputDescription}
+                value={updateDescription}
+              ></input>
+            </>
           )}
-        </div>
-        {/* ---------- description ------------  */}
 
-        {toogleUpdatePost && (
-          <>
-            <label>description: </label>
-            <input
-              placeholder="description"
-              type="text"
-              id="description"
-              onChange={handleInputDescription}
-              value={updateDescription}
-            ></input>
-          </>
-        )}
+          {authCtx.userId === props.item.item.userId ? (
+            <Button className="updateButton" onClickProps={handleModification}>
+              {!toogleUpdatePost ? "Modifier le post" : "Annuler"}
+            </Button>
+          ) : null}
 
-        {authCtx.userId === props.item.item.userId ? (
-          <Button className="updateButton" onClickProps={handleModification}>
-            {!toogleUpdatePost ? "Modifier le post" : "Annuler"}
-          </Button>
-        ) : null}
-
-        <div>{toogleUpdatePost && <Button type="submit">Envoyer</Button>}</div>
-      </form>
-    </div>
-  );
+          <div>
+            {toogleUpdatePost && <Button type="submit">Envoyer</Button>}
+          </div>
+        </form>
+      </div>
+    );
+  }
 };
 
 export default UpdatePostCart;

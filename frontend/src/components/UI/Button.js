@@ -1,6 +1,3 @@
-// import classes from "../../style/Button.module.css";
-// import "./Button.module.css"
-
 const Button = (props) => {
   return (
     <button

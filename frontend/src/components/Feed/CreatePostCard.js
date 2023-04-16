@@ -1,6 +1,7 @@
 import Button from "../UI/Button";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Post from "./Post";
+import "../../style/create-post.css";
 
 const CreatePostCard = (props) => {
   const [titleInput, setTitleInput] = useState();
@@ -30,7 +31,7 @@ const CreatePostCard = (props) => {
       .then((response) => {
         if (response.ok) {
           console.log("Post created");
-          // return <Post />;
+          // le status Create est true seullemnt penddant la duree dfe reposnse.ok
           setStatusCreate(true);
 
           // window.location.reload(false);
@@ -42,8 +43,10 @@ const CreatePostCard = (props) => {
         console.error("Error: ", error);
       });
   };
+  // console.log(statusCreate);
   if (statusCreate) {
     // setStatusCreate(false);
+    // lorsque je cree un poste il se met a true, puis une fois la reponse envoyer le statuscreate se remet par default a false
     return <Post />;
   } else {
     return (
@@ -52,9 +55,9 @@ const CreatePostCard = (props) => {
           display create post
         </Button>
         {displayCreatePost && (
-          <form onSubmit={handleFormSubmit}>
+          <form onSubmit={handleFormSubmit} className="create-post">
             <div>
-              <label htmlFor="title">Title:</label>
+              <label htmlFor="title">Title: </label>
               <input
                 type="text"
                 id="title"

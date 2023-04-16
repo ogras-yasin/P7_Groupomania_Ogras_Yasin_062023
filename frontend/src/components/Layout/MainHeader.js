@@ -1,7 +1,9 @@
 import React, { useContext } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import AuthContext from "../../store/authContext";
 import "../../style/MainHeader.css";
+import img1 from "../../images/groupomania-logo.png";
+
 const MainHeader = () => {
   const authCtx = useContext(AuthContext);
 
@@ -13,6 +15,7 @@ const MainHeader = () => {
     <div>
       <header className="header-nav">
         <nav>
+          <img src={img1} alt="groupomania logo" className="img-flex" />
           <ul className="header-ul">
             <NavLink
               to="/"

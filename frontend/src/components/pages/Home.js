@@ -7,9 +7,7 @@ import MainHeader from "../Layout/MainHeader";
 const Home = () => {
   const authCtx = useContext(AuthContext);
   const isLoggedIn = authCtx.isLoggedIn;
-  // const isLoggedIn = true;
-  //LE PROBLEM VIENS DE ISLOGGED IN IL EST A FALSE QUAND JE FAIS UN F5
-  console.log(authCtx.isLoggedIn);
+
   return (
     <section>
       <MainHeader />
@@ -21,7 +19,3 @@ const Home = () => {
 };
 
 export default Home;
-// import Feed from "../Feed/Feed";
-{
-  /* {isLoggedIn && <Feed />} */
-}
