@@ -1,9 +1,0 @@
-naasi calistigini yazsana
-
-Ce que je me souviens de ce projet:
-
-J'ai etabli le back-end presque finis (juste admin)
-
-
-et j'utilise react pour le front
-

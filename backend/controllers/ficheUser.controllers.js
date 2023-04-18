@@ -38,13 +38,27 @@ exports.updateFicheUser = (req, res, next) => {
   //   plustard modifier l'image aussi
   // console.log("req.body");
   // console.log(req.body);
+
+  // si image existe ou non 2 conditions =/ different
+  const postFicheUser = req.file
+    ? {
+        ...req.body,
+        imageUrl: `${req.protocol}://${req.get("host")}/images/${
+          req.file.filename
+        }`,
+      }
+    : { ...req.body };
+
   FicheUser.updateOne(
     { userId: req.params.id },
     {
-      ...req.body,
-      photoProfilUrl: `${req.protocol}://${req.get("host")}/images/${
-        req.file.filename
-      }`,
+      ...postFicheUser,
+      userId: req.params.id,
+      // ...req.body,
+
+      // photoProfilUrl: `${req.protocol}://${req.get("host")}/images/${
+      //   req.file.filename
+      // }`,
       // _id: req.params.id,
     }
   )

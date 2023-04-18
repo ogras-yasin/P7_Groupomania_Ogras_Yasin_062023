@@ -17,19 +17,14 @@ const DeletePostCard = (props) => {
     });
     if (response.ok) {
       console.log("Post supprimer avec succes");
+      console.log("tag ==>", tag);
       // suprime le post en choisisant tout ce qu'il y a a l'interieur de la classe post-card-children
       tag.target.closest(".post-card-children").remove();
     } else {
       console.log("Erreur lors de la supression du post");
     }
   };
-  // console.log(props.item.userId);
-  // console.log(AuthContext);
-  // console.log(authCtx);
 
-  // console.log(localStorage.getItem("token"));
-
-  // console.log(props.item.item.userId);
   return (
     <div className="user2">
       {authCtx.isAdmin === true || authCtx.userId === userId ? (

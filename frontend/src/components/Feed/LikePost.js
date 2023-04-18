@@ -7,7 +7,7 @@ import AuthContext from "../../store/authContext";
 const LikePost = (props) => {
   const { item } = props.item;
 
-  console.log("frontend", item);
+  // console.log("frontend", item);
   // console.log("proooops", props);
   const authCtx = useContext(AuthContext);
   const [numLikes, setNumLikes] = useState(item.likes);

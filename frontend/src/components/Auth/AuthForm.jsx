@@ -47,8 +47,8 @@ const AuthForm = () => {
         });
         const dataResponse = await response.json();
         if (response.ok) {
-          console.log("dataResponse: ==>");
-          console.log(dataResponse);
+          // console.log("dataResponse: ==>");
+          // console.log(dataResponse);
 
           // mettre a jour le token dans le context
           authCtx.login(

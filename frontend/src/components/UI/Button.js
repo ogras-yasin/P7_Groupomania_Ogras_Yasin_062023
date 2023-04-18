@@ -4,6 +4,7 @@ const Button = (props) => {
       className={props.type}
       //Ajouter l'attribut type pour limiter les styles au bouton lui-même
       onClick={props.onClickProps}
+      // onClick={props.onClickProps2}
     >
       {props.children}
     </button>

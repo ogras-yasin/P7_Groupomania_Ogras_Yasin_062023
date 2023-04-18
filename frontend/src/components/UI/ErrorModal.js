@@ -1,3 +1,5 @@
+// ErrorModal est en cours de pojet donc il n'est pas terminer
+
 import "../../style/login-signUp.css";
 import Button from "./Button";
 import "../../style/errorModal.css";
@@ -53,5 +55,3 @@ const ErrorModal = (props) => {
 };
 
 export default ErrorModal;
-
-// bu ise yaramaz import yap daha iyi email verification yapmak icin

@@ -1,10 +1,6 @@
 import { createContext, useState } from "react";
-// import jwt from "jsonwebtoken";
-// TOKEN I YENIDEN INDERMEM LAZIM
-// supprime le node module et reinstale l'app
-// ((((((((((((((((--- ))))))))))))))))
 
-// The defaultValue parameter sets an initial value for the context, which can be overridden by any child component that provides its own value for the context.
+// Le paramètre defaultValue définit une valeur initiale pour le contexte, qui peut être remplacée par n'importe quel composant enfant qui fournit sa propre valeur pour le contexte.
 const defaultValue = {
   token: null,
   userId: "",
@@ -14,11 +10,7 @@ const defaultValue = {
   isAdmin: false,
 };
 
-// const AuthContext = createContext(defaultValue);
 const AuthContext = createContext(defaultValue);
-
-// le context provider pour wrapper app.js
-console.log(localStorage.getItem("token"));
 
 export const AuthContextProvider = (props) => {
   const [token, setToken] = useState(localStorage.getItem("token") || null);
@@ -46,6 +38,7 @@ export const AuthContextProvider = (props) => {
     localStorage.removeItem("isAdmin");
   };
 
+  // Je transforme IsLoggedIn en Boolean SI il trouve un token dans le state token alors true
   const isLoggedIn = !!token;
 
   const contextValue = {
@@ -65,7 +58,3 @@ export const AuthContextProvider = (props) => {
 };
 
 export default AuthContext;
-// !! veut dire truthy
-// Je transforme userIsLoggedIn en Boolean SI il trouve un token dans le state token
-// const userIsLoggedIn = !!token;
-// Il ne peut pas trouver token car il doit passer pas authform directement avant

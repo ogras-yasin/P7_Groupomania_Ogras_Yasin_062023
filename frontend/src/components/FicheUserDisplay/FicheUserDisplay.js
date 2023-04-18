@@ -13,7 +13,13 @@ const FicheUserDisplay = ({ data }) => {
   const authCtx = useContext(AuthContext);
   const [selectedImage, setSelectedImage] = useState(null);
 
-  // modif
+  // faire un ANTIPATERN pour ne pas etre en boucle infini stackoverflow
+  useEffect(() => {
+    console.log(data);
+    setDataUpdate(data);
+  }, [data]);
+
+  // afficher bouton modfier/envoyer
   const modificationHandler = () => {
     setModification((modification) => !modification);
     console.log({ modification });
@@ -31,16 +37,12 @@ const FicheUserDisplay = ({ data }) => {
     // formData.append("image", newPhoto);
     // console.log(formData.get("image"));
 
+    // Pour mettre a jour le state dataUptade
     setDataUpdate({
       ...data,
       newPhoto: newPhoto,
     });
   };
-
-  // faire un ANTIPATERN pour ne pas etre en boucle infini stackoverflow
-  useEffect(() => {
-    setDataUpdate(data);
-  }, [data]);
 
   // pour surveiller les modifcations qui sont faites dans les champs
   // event ne fonctiopnne pas

@@ -1,6 +1,4 @@
-// import React, { useContext } from "react";
-// import AuthContext from "../../store/authContext";
-
+import { useState } from "react";
 import "../../style/post-card-children.css";
 import DeletePostCard from "./DeletePostCard";
 import LikePost from "./LikePost";
@@ -10,9 +8,13 @@ const PostCard = (props) => {
   // const { title, imageUrl, description, _id, likes } = props.item;
   const { title, imageUrl, description } = props.item;
 
-  // const authCtx = useContext(AuthContext);
+  // Parent to child
+  const [data, setData] = useState(true);
+  const childToParent = (childData) => {
+    setData(childData);
+  };
 
-  // --------------gerer les likes----------------
+  // console.log("data ==>", data);
 
   return (
     <div className="post-card-children">
@@ -25,8 +27,8 @@ const PostCard = (props) => {
 
       <LikePost item={props} />
       <div className="button-card">
-        <DeletePostCard item={props} />
-        <UpdatePostCart item={props} />
+        {data && <DeletePostCard item={props} />}
+        <UpdatePostCart item={props} childToParent={childToParent} />
       </div>
     </div>
   );
