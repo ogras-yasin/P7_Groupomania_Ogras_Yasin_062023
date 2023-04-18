@@ -1,14 +1,9 @@
-// exports.signup = (req, res, next) => {
-//   res.json({ message: "Je suis dans la route users !" });
-// };
-
 const User = require("../models/users.model");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
 
 exports.signup = (req, res, next) => {
-  console.log("you reach the route signup");
   bcrypt
     .hash(req.body.password, 10)
     .then((hash) => {
@@ -31,16 +26,12 @@ exports.signup = (req, res, next) => {
       console.log(error);
       res.status(500).json({ error: "ceci est une erreur de serveur" });
     });
-  // res.json({ message: "Je suis dans la route users !" });
 };
 
 exports.login = (req, res, next) => {
   // Chercher l'utilisateur dans la base de donées
   User.findOne({ email: req.body.email })
     .then((user) => {
-      // console.log("user----------", user);
-      // si aucun user ne correspond a la req envoye par le client
-      // on recoit null
       if (!user) {
         console.log(user);
         return res.status(401).json({ error: "Utilisateur non trouvé !" });
@@ -61,7 +52,7 @@ exports.login = (req, res, next) => {
               isAdmin: user.isAdmin,
               userId: user._id,
               token: jwt.sign({ userId: user._id }, process.env.SECRET_TOKEN, {
-                expiresIn: "240h",
+                expiresIn: "24h",
               }),
               message: "mot de passe correct",
             });

@@ -2,12 +2,12 @@ import Button from "../UI/Button";
 import React, { useState } from "react";
 import "../../style/create-post.css";
 
-const CreatePostCard = (props) => {
+const CreatePostCard = () => {
   const [titleInput, setTitleInput] = useState();
   const [descriptionInput, setDescriptionInput] = useState();
   const [displayCreatePost, setDisplayCreatePost] = useState(false);
 
-  const toogleExpandCollapseForm = (e) => {
+  const toogleExpandCollapseForm = () => {
     setDisplayCreatePost((displayCreatePost) => !displayCreatePost);
     console.log("toogleDisplayCreatePost ==>", displayCreatePost);
   };

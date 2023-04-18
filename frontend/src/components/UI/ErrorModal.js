@@ -14,7 +14,6 @@ const Backdrop = (props) => {
 // overlay =recouvrir
 const ErrorModaleOverlay = (props) => {
   return (
-    // <div className="backdrop" onClick={props.onConfirm}>
     <Card className="modal">
       <header className=".header-error_modal">
         <h2>{props.title}</h2>
@@ -26,13 +25,9 @@ const ErrorModaleOverlay = (props) => {
         <Button onClickProps={props.onConfirm}>OK</Button>
       </footer>
     </Card>
-    // {/* </div> */}
   );
 };
-// ErrorModal  ==> ErrorModaleOverlay
-// parent ==> children
-// comme d'hab on passe les informations par le biais des props
-// comment le parent ErrorModal va passer la prop de onConfirm a son enfant  ErrorModaleOverlay ?
+
 const ErrorModal = (props) => {
   return (
     <>

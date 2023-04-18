@@ -6,7 +6,6 @@ import "../../style/Post-card-parent.css";
 const Post = () => {
   const [dataPost, setDataPost] = useState([]);
   const AuthCtx = useContext(AuthContext);
-  // console.log(AuthCtx.token);
 
   // recuperation de tous les posts
   useEffect(() => {

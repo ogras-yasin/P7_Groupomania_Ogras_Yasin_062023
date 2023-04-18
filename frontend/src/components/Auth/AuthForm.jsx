@@ -3,7 +3,6 @@ import Wrapper from "../helpers/Wrapper";
 import ErrorModal from "../UI/ErrorModal";
 import Button from "../UI/Button";
 import AuthContext from "../../store/authContext";
-// import Test from "../Test";
 
 const AuthForm = () => {
   // jutilise useRef pour recup les donnees input
@@ -34,9 +33,6 @@ const AuthForm = () => {
     // async func fetchHandler
     const fetchHandler = async () => {
       try {
-        // premier parametre -->tu va me chercher l'url backend
-        //deuxieme parametre -->GET je recupere les donnees de backend
-
         const response = await fetch(url, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -47,9 +43,6 @@ const AuthForm = () => {
         });
         const dataResponse = await response.json();
         if (response.ok) {
-          // console.log("dataResponse: ==>");
-          // console.log(dataResponse);
-
           // mettre a jour le token dans le context
           authCtx.login(
             dataResponse.token,
@@ -63,18 +56,15 @@ const AuthForm = () => {
           });
         }
       } catch (error) {
-        console.log(error);
-        /* erreur lier au serveur */
+        console.log(" erreur lier au serveur: ", error);
       }
     };
 
     fetchHandler();
 
-    // controle validite her sey bittikten sonra buraya koyarson regex filan
-
     // pour vider les champs
-    emailInputRef.current.value = "gs_yasin@hotmail.fr";
-    passwordInputRef.current.value = "a";
+    emailInputRef.current.value = "";
+    passwordInputRef.current.value = "";
     // ------------------------------------------------
   };
 
@@ -128,7 +118,7 @@ const AuthForm = () => {
           />
           <Button type={"submit"}>
             {isLogin ? "Se connecter" : "S'inscrire"}
-            {/* se connceter ou s'inscrire si token generer dirige moi vers accueil */}
+            {/* se connecter ou s'inscrire si token generer dirige moi vers accueil */}
           </Button>
           <p onClick={toogleAuthModeHandler} className="toogleAuthMode">
             {isLogin ? "Créer un compte " : "Se connecter"}

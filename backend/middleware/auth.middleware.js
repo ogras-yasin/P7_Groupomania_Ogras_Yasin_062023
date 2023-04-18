@@ -4,7 +4,6 @@ const jwt = require("jsonwebtoken");
 // Récupération du TOKEN qu'il y a dans la REQUEST envoyé par le FRONT
 module.exports = (req, res, next) => {
   try {
-    // récuperer le token dans le [headers] [authorization]: bearer token
     // separer le bearer du token avec .split(" ")[1]
     const token = req.headers.authorization.split(" ")[1];
     // decoder le token
@@ -18,8 +17,6 @@ module.exports = (req, res, next) => {
       };
       next();
     });
-
-    // next();
   } catch (error) {
     res.status(500).json({
       error: "autorisation echouée",

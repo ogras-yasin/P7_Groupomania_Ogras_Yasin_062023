@@ -8,8 +8,6 @@ const MainHeader = () => {
   const authCtx = useContext(AuthContext);
 
   const isLoggedIn = authCtx.isLoggedIn;
-  // console.log("authCtx:  ");
-  // console.log(isLoggedIn);
 
   return (
     <div>
@@ -38,7 +36,6 @@ const MainHeader = () => {
                   className={`${"header-nav-li"} ${"disconnect"}`}
                   onClick={() => {
                     console.log("deconection apuyer");
-                    // useNavigate()
                     authCtx.logout();
                   }}
                 >
