@@ -1,7 +1,6 @@
 const Post = require("../models/post.model");
 
 exports.likePost = (req, res) => {
-  // trouver l'id de l'object puis manipuler les l'object(likes,usersLiked,...)
   Post.findOne({ _id: req.params.id })
     .then((ThePost) => {
       //   si userId n'est pas dans le tableau et like === 1 ALORS incrementer +1 et ajouter l'userId ds le tbl usersLiked
@@ -47,15 +46,4 @@ exports.likePost = (req, res) => {
     .catch((error) => {
       res.status(400).json({ error: error });
     });
-};
-
-// JE NUTILISE PAS j'espere ne pas utiliser
-// recuperer toutes les likes
-exports.getLikePost = (req, res) => {
-  Post.findOne({ _id: req.params.id })
-    .then((ThePost) => {
-      console.log("ThePost", ThePost);
-      res.status(201).json({ thePost: ThePost, likes: ThePost.likes });
-    })
-    .catch((error) => res.status(400).json({ error: error }));
 };

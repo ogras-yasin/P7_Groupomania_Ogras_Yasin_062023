@@ -46,9 +46,6 @@ exports.login = (req, res, next) => {
                 .json({ message: "mot de passe incorrect !" });
             }
             res.status(200).json({
-              //  In computing and telecommunications, the PAYLOAD is the part of transmitted data that is the actual intended message. Headers and metadata are sent only to enable payload delivery
-              // ce token contient l'ID de l'utilisateur en tant que payload
-              // (les données encodées dans le token) ;
               isAdmin: user.isAdmin,
               userId: user._id,
               token: jwt.sign({ userId: user._id }, process.env.SECRET_TOKEN, {

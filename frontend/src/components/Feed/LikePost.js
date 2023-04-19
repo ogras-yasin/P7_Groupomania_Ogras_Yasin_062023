@@ -33,7 +33,6 @@ const LikePost = (props) => {
     }
   };
 
-  // ----------------------
   const handleRemoveLike = async () => {
     const url = `http://localhost:3000/api/post/${item._id}/like`;
     try {

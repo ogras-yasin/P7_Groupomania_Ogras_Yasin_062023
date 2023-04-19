@@ -18,19 +18,16 @@ const AuthForm = () => {
   // state pour gerer les erreurs
   const [error, setError] = useState();
 
-  // Execution de la logique lorsqu'on submit(login /signup)
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const enteredEmail = emailInputRef.current.value;
     const enteredPassword = passwordInputRef.current.value;
 
-    // se connecter/s'insrire et recuperer le userId et le token d'authentification
     const url = isLogin
       ? "http://localhost:3000/api/auth/login"
       : "http://localhost:3000/api/auth/signup";
 
-    // async func fetchHandler
     const fetchHandler = async () => {
       try {
         const response = await fetch(url, {
@@ -62,7 +59,7 @@ const AuthForm = () => {
 
     fetchHandler();
 
-    // pour vider les champs
+    // vider les champs
     emailInputRef.current.value = "";
     passwordInputRef.current.value = "";
     // ------------------------------------------------
@@ -74,7 +71,6 @@ const AuthForm = () => {
     setIsLogin((prevState) => !prevState);
   };
 
-  // faire fonctionner la fonction errorhandler lorsqu'on clique sur ok qui est un composant enfant
   const errorHandler = () => {
     setError(null);
   };
@@ -82,12 +78,10 @@ const AuthForm = () => {
   return (
     <Wrapper>
       <div className="App">
-        {/* si erreur alors nous invoquons la module d'erreur */}
         {error && (
           <ErrorModal
             title={error.title}
             message={error.message}
-            // onConfirm(est une props) on passe une fonction.Contrairement aux autres props celle ci faut Remonter l'enfant vers le parent
             onConfirm={errorHandler}
           />
         )}
@@ -118,7 +112,6 @@ const AuthForm = () => {
           />
           <Button type={"submit"}>
             {isLogin ? "Se connecter" : "S'inscrire"}
-            {/* se connecter ou s'inscrire si token generer dirige moi vers accueil */}
           </Button>
           <p onClick={toogleAuthModeHandler} className="toogleAuthMode">
             {isLogin ? "Créer un compte " : "Se connecter"}
@@ -130,34 +123,3 @@ const AuthForm = () => {
 };
 
 export default AuthForm;
-
-// -----coller cette partie dans la fonction  AuthConnection apres que le projet est terminer, car la ca pollue mon code
-
-//  /*     Les Erreurs Possibles de client et les logiques */
-//     ///*  */ controle input pas vide/*  */
-
-//     if (
-//       enteredEmail.trim().length === 0 ||
-//       enteredPassword.trim().length === 0
-//     ) {
-//       // setError se met en true lorsque je lui passe un object(meme vide)
-//       setError({
-//         title: "Un ou plusieurs champs sont vides",
-//         message: "Entrer votre email et votre mot de passe",
-//       });
-//       return;
-//       //Le return vide est utilisé ici pour sortir de la fonction handleSubmit() immédiatement, sans exécuter le reste du code si les conditions dans le if sont remplies, c'est-à-dire si enteredEmail ou enteredPassword sont vides. Cela permet d'éviter l'execution d'un code inutile.(je fais ca pour economiser un else)
-//     }
-
-// // controle validite email
-// const regExEmail = (value) => {
-//   return /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(value);
-// };
-
-// if (!regExEmail(enteredEmail)) {
-//   setError({
-//     title: "Email invalide",
-//     message: "Entrer un format de mail valide",
-//   });
-//   return;
-// }

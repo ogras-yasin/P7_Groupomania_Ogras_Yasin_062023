@@ -1,3 +1,6 @@
+// ----- en cours ------
+// --- Ce n'est pas encore tout a fait operationnel ----
+
 const FicheUser = require("../models/ficheUser.model");
 
 exports.createFicheUser = (req, res, next) => {
@@ -6,9 +9,6 @@ exports.createFicheUser = (req, res, next) => {
   delete postObject._id;
 
   console.log("req.body====>", req.body);
-  // return;
-  // COK ONEMLI APLLICATION/JSON ILE DEGIL SADECE FORM/DATA ILE YOLLA cunku image'da var
-
   const addPost = new FicheUser({
     userId: req.auth.userId,
     // Le token est demonter par le middleware auth, ici on recupere userId de  auth, donc tres securisée
@@ -35,11 +35,6 @@ exports.createFicheUser = (req, res, next) => {
 //   changer les modifications dans la base de données
 
 exports.updateFicheUser = (req, res, next) => {
-  //   plustard modifier l'image aussi
-  // console.log("req.body");
-  // console.log(req.body);
-
-  // si image existe ou non 2 conditions =/ different
   const postFicheUser = req.file
     ? {
         ...req.body,
@@ -54,12 +49,6 @@ exports.updateFicheUser = (req, res, next) => {
     {
       ...postFicheUser,
       userId: req.params.id,
-      // ...req.body,
-
-      // photoProfilUrl: `${req.protocol}://${req.get("host")}/images/${
-      //   req.file.filename
-      // }`,
-      // _id: req.params.id,
     }
   )
     .then((object) => {
@@ -75,9 +64,7 @@ exports.updateFicheUser = (req, res, next) => {
 
 // récupérer un profil spécifique
 exports.findSingleFicheUser = (req, res, next) => {
-  // FicheUser.findById(req.params.id)
   FicheUser.findOne({ userId: req.params.id })
-    // .sort({ createdAt: -1 }) pour regler le fil du commentaire
 
     .then((ficheUser) => {
       if (!ficheUser) {
@@ -90,16 +77,6 @@ exports.findSingleFicheUser = (req, res, next) => {
     });
 };
 
-/* // recuperer toutes les Post
-exports.findFicheUser = (req, res, next) => {
-  console.log(req);
-  FicheUser.find()
-    .then((getAllPost) => {
-      res.status(200).json({ msg: "read", getAllPost });
-    })
-    .catch((error) => res.status(400).json({ error: error }));
-};
- */
 // supprimer un post
 
 exports.deleteFicheUser = (req, res, next) => {

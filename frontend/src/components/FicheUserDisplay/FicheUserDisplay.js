@@ -1,9 +1,10 @@
+//  ------------EN COURS CE NEST PAS ENCORE TOTALEMNET FONCTIONNEL
 import { useContext, useEffect, useRef, useState } from "react";
 import AuthContext from "../../store/authContext";
 import "../../style/ficheUserDisplay.css";
 import Button from "../UI/Button";
 
-// Chepas pourquoi j'ai 4 rendu a chaque fois dans ma console.log()
+// je ne sais pourquoi j'ai 4 rendu a chaque fois dans ma console.log()
 const FicheUserDisplay = ({ data }) => {
   const [dataUpdate, setDataUpdate] = useState(data);
   const [modification, setModification] = useState(false);

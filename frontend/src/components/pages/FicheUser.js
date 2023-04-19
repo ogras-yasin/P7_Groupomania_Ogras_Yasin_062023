@@ -12,8 +12,6 @@ const FicheUser = () => {
   const [data, setData] = useState({});
   const url = `http://localhost:3000/api/ficheUser/${authCtx.userId}`;
 
-  // useCallback will return a memoized version of the callback that only changes if one of the inputs has changed.
-  // Le useCallback regarde si rien n'a bouger il n'autorisera pas le rendu
   const fetchHandler = useCallback(async () => {
     try {
       const response = await fetch(url, {
@@ -39,7 +37,6 @@ const FicheUser = () => {
           };
         };
         setData(reformatage);
-        // console.log("data==>", data.ficheUser.prenom);
       } else {
         throw new Error(
           `Failed to fetch data (${response.status}): ${dataResponse.msg} `
@@ -55,13 +52,12 @@ const FicheUser = () => {
       fetchHandler();
     }
   }, [fetchHandler, isLoggedIn]);
-  // Je peux pas mettre fetchHandler(ds le useEffect) sinon il déclenche une nouvelle mise à jour du composant à chaque fois qu'il est exécuté. Dans ce cas, cela peut entraîner une boucle infinie de mises à jour du composant, ce qui explique pourquoi FicheUserDisplay est mis à jour plusieurs fois.
 
   return (
     <div>
       <MainHeader />
       {!isLoggedIn && <Navigate to={"/"} replace={true} />}
-      {/* si j'appuie sur disconnect indirectement ca me dirige vers la page accueil */}
+
       {isLoggedIn && <FicheUserDisplay data={data} />}
     </div>
   );

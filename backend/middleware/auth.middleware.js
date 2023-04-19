@@ -1,7 +1,6 @@
-// const Usermodels
 const jwt = require("jsonwebtoken");
 
-// Récupération du TOKEN qu'il y a dans la REQUEST envoyé par le FRONT
+// Récupération du TOKEN envoyé par le FRONT
 module.exports = (req, res, next) => {
   try {
     // separer le bearer du token avec .split(" ")[1]
