@@ -8,7 +8,8 @@
 
 Commencez par cloner le projet :
 
-``` git clone https://github.com/marie-morin/p7-groupomania.git ```
+``` git clone https://github.com/ogras-yasin/P7_Groupomania_Ogras_Yasin_062023.git```
+
 
 # P7_Créez un réseau social d’entreprise
 
