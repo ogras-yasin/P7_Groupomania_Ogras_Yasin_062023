@@ -1,9 +1,3 @@
-<ul>
-  <li>Élément 1</li>
-  <li>Élément 2</li>
-  <li>Élément 3</li>
-</ul>
-
 # Lancer le projet
 
 Commencez par cloner le projet :
@@ -26,7 +20,7 @@ Le projet est entièrement hosté en local.
   <li>La base de données sous MongoDb</li>
 </ul>
 
-PROJET N°07 - CREEZ UN RESEAU SOCIAL D'ENTREPRISE
+
 ### Backend
 
 Déplacez-vous dans le dossier Backend et installez les dépendances :
