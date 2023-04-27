@@ -27,12 +27,27 @@ Le projet est entièrement hosté en local.
 </ul>
 
 PROJET N°07 - CREEZ UN RESEAU SOCIAL D'ENTREPRISE
+### Backend
 
+Déplacez-vous dans le dossier Backend et installez les dépendances :
+``` 
+cd backend
+npm install
+```
+Pour lancer le Backend executer 
+```
+npm nodemon 
+```
 
-Depuis le terminal, ouvrir le dossier backend et executer la commande "npm install" pour une premiere utilisation.
-Depuis le terminal, ouvrir le dossier backend et executer la commande "npm nodemon" pour chaque utilisation 
- 
+### Frontend
+Déplacez-vous dans le dossier Frontend et installez les dépendances :
+``` 
+cd frontend
+npm install
+```
+Pour lancer le Frontend executer 
+``` 
+npm start
+```
 
-Depuis le terminal, ouvrir le dossier Web-Developer-P7 et executer la commande "npm install" pour une premiere utilisation.
-Depuis le terminal, ouvrir le dossier Web-Developer-P7 et executer la commande "npm start", pour chaque utilisation
-Aller sur un navigateur et tapez localhost:7000
+Le server est accessible à localhost:7000.
