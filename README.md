@@ -6,14 +6,19 @@
 
 # Introduction
 
-Le projet consiste à construire un réseau social interne pour les employés de Groupomania.
 
-Le projet est entièrement hosté en local.
 
 # P7_Créez un réseau social d’entreprise
 
-Cette partie est spécialement pour le backend du projet. Il est sous ExpressJS côté serveur, et sous MariaDB côté base de données. Pour le choix de l'ORM, Prisma a été choisi.
+Le projet consiste à construire un réseau social interne pour les employés de Groupomania.
+Le projet est entièrement hosté en local.
 
+<ul>
+<li> Le backend est est sous ExpressJS côté serveur</li>
+  <li>Le frontEnd est sous React</li>
+  <li>La base de données sous MongoDb</li>
+  
+</ul
 # 🔨 Construisez un réseau social avec JavaScript
 <ul>
 <li>aga <li/>
