@@ -10,7 +10,9 @@ Le projet est entièrement hosté en local.
 Cette partie est spécialement pour le backend du projet. Il est sous ExpressJS côté serveur, et sous MariaDB côté base de données. Pour le choix de l'ORM, Prisma a été choisi.
 
 # 🔨 Construisez un réseau social avec JavaScript
-
+<ul>
+<li>aga <li/>
+<ul/>
 Développement Frontend en JavaScript
 React.js
 React Router-dom
