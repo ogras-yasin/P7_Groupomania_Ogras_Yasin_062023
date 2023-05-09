@@ -31,7 +31,7 @@ npm install
 ```
 Pour lancer le Backend executer 
 ```
-npm nodemon 
+npm start
 ```
 
 ### Frontend
