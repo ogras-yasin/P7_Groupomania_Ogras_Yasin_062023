@@ -17,7 +17,7 @@ Commencez par cloner le projet :
 
 <ul>
   <li> Le backend est sous NodeJS Express côté serveur</li>
-  <li>Le frontEnd est sous React</li>
+  <li>Le frontend est sous React</li>
   <li>La base de données est sous MongoDb</li>
 </ul>
 
