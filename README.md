@@ -16,9 +16,9 @@ Commencez par cloner le projet :
 ## 🔨 Construisez un réseau social avec JavaScript
 
 <ul>
-  <li> Le backend est est sous NodeJS Express côté serveur</li>
+  <li> Le backend est sous NodeJS Express côté serveur</li>
   <li>Le frontEnd est sous React</li>
-  <li>La base de données sous MongoDb</li>
+  <li>La base de données est sous MongoDb</li>
 </ul>
 
 
