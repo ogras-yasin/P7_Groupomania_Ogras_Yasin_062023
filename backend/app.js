@@ -26,7 +26,7 @@ app.use(cors());
 
 app.use(
   helmet({
-    // empeche le cross origin error 
+    // empecher le cross origin error 
 
     crossOriginResourcePolicy: false,
   })
